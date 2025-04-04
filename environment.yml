@@ -9,7 +9,6 @@ dependencies:
   - pytorch
   - torchvision 
   - pytorch-cuda=11.8
-  - mss
   - pip
   - pip:
     - ultralytics
@@ -19,3 +18,4 @@ dependencies:
     - protobuf
     - asyncio
     - opencv-python
+    - mss

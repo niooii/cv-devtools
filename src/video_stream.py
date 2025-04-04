@@ -44,7 +44,6 @@ class ScreenStream(VideoStream):
             img = self.sct.grab(self.sct.monitors[1])
         else:
             img = self.sct.grab(self.bounds)
-        print(img)
         return np.array(img)
 
     def close(self):

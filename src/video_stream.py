@@ -34,13 +34,18 @@ class WebcamStream(VideoStream):
         self.capture.release()
 
 class ScreenStream(VideoStream):
-    def __init__(self, bounding_box={"top": 40, "left": 0, "width": 800, "height": 640}):
+    def __init__(self, bounding_box=None):
         self.bounds = bounding_box
         self.sct = mss()
         
     def get_cv_frame(self):
-        img = self.sct.grab(self.bounds)
+        img = None
+        if self.bounds is None:
+            img = self.sct.grab(self.sct.monitors[1])
+        else:
+            img = self.sct.grab(self.bounds)
+        print(img)
         return np.array(img)
 
-    def close():
+    def close(self):
         pass

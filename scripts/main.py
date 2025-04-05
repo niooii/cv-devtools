@@ -7,11 +7,5 @@ monitor = {"left": 0, "top": 0, "height": 1000, "width": 1000}
 stream = ScreenStream(monitor)
 annotated_stream = AnnotatedVideoStream(stream, model_path="trained_s.pt")
 
-while True:
-    frame = annotated_stream.get_frame()
-
-    cv2.imshow("OpenCV", frame)
-    if cv2.waitKey(25) & 0xFF == ord("q"):
-        cv2.destroyAllWindows()
-        break
+annotated_stream.show_in_window()
 

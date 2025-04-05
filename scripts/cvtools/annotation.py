@@ -1,5 +1,6 @@
 import cv2
 from ultralytics import YOLO
+from cvtools.video_stream import VideoStream
 
 class Annotator():
     def __init__(self, model_path: str): 
@@ -27,3 +28,14 @@ class Annotator():
                 cv2.putText(frame, label, (x1, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2)
 
         return frame
+    
+class AnnotatedVideoStream():
+    def __init__(self, video_stream: VideoStream, model_path: str):
+        self.stream = video_stream
+        self.annotator = Annotator(model_path=model_path)
+
+    def get_frame(self): 
+        frame = self.stream.get_cv_frame()
+        return self.annotator.annotate(frame)
+
+    

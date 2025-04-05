@@ -44,7 +44,10 @@ class ScreenStream(VideoStream):
             img = self.sct.grab(self.sct.monitors[1])
         else:
             img = self.sct.grab(self.bounds)
-        return np.array(img)
+            
+        img_np = np.array(img)
+
+        return cv2.cvtColor(img_np, cv2.COLOR_BGRA2BGR)
 
     def close(self):
         pass
